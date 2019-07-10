@@ -1,12 +1,13 @@
 from telegram.ext import Updater, CommandHandler, RegexHandler
 import requests
 import re
+import os
 import logging
 
 logging.basicConfig(level=logging.DEBUG,
 format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-token = '828032240:AAHllyNsu_SsrLSq4QjkmaGbs3iZw3sS2vM'
+token = os.environ['telegram_bot_token']
 
 def dog(bot, update):
     contents = requests.get('https://random.dog/woof.json').json()
