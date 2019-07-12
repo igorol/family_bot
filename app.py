@@ -1,7 +1,7 @@
 import os
 import logging
 import requests
-from weather import get_weather
+from weather import get_weather, get_radar
 from telegram.ext import Updater, CommandHandler, RegexHandler
 
 logging.basicConfig(
@@ -36,12 +36,20 @@ def weather(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text=message)
 
 
+def radar(bot, update):
+    chat_id = update.message.chat_id
+    fn = get_radar()
+    with open(fn, "rb") as photo:
+        bot.send_photo(chat_id=chat_id, photo=photo)
+
+
 def main():
     updater = Updater(token)
     dp = updater.dispatcher
     dp.add_handler(CommandHandler("dog", dog))
     dp.add_handler(CommandHandler("jolie", jolie))
     dp.add_handler(CommandHandler("weather", weather))
+    dp.add_handler(CommandHandler("buien", radar))
     updater.start_polling()
     updater.idle()
 
