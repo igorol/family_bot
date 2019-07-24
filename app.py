@@ -2,7 +2,7 @@ import os
 import logging
 import requests
 from weather import get_weather, get_radar
-from telegram.ext import Updater, CommandHandler, RegexHandler
+from telegram.ext import Updater, CommandHandler
 
 logging.basicConfig(
     filename="log.txt",
@@ -33,7 +33,7 @@ def weather(bot, update):
     Max: {tmax},
     Min: {tmin}
     """
-    bot.send_message(chat_id=update.message.chat_id, text=message)
+    bot.send_message(chat_id=chat_id, text=message)
 
 
 def radar(bot, update):
@@ -45,6 +45,7 @@ def radar(bot, update):
 
 def main():
     updater = Updater(token)
+    print(token)
     dp = updater.dispatcher
     dp.add_handler(CommandHandler("dog", dog))
     dp.add_handler(CommandHandler("jolie", jolie))
