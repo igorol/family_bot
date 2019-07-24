@@ -4,5 +4,5 @@ services:
   - docker
 
 before_install:
-  - docker build -t family_bot .
+  - docker build -t family_bot --build-arg telegram_bot_token=$telegram_bot_token .
   - docker run family_bot
