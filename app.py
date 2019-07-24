@@ -44,8 +44,8 @@ def radar(bot, update):
 
 
 def main():
-    updater = Updater(token)
     print(token)
+    updater = Updater(token)
     dp = updater.dispatcher
     dp.add_handler(CommandHandler("dog", dog))
     dp.add_handler(CommandHandler("jolie", jolie))
