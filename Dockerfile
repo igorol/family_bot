@@ -1,4 +1,6 @@
 FROM python:3
+ARG telegram_bot_token
+ENV telegram_bot_token=${telegram_bot_token}
 ADD app.py /
 ADD weather.py /
 ADD requirements.txt /
